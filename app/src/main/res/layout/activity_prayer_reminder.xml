@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Main.PrayerReminder.Home.PrayerReminderActivity">
+
+
+    <ProgressBar
+        android:id="@+id/prayer_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/gradiant_color">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/flying_birds2"/>
+
+
+        <TextView
+            android:id="@+id/prayerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:text="Prayer  Reminder"
+            android:textColor="#ffffff"
+            android:textSize="30dp"
+            android:shadowColor="@color/text_shadow"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="2"
+            android:fontFamily="@font/round_font"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/zuharcard"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/fajarcard"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <RelativeLayout
+                    android:id="@+id/zuhar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="visible">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/zuhar_image"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/zuhar"/>
+
+                    <TextView
+                        android:id="@+id/zuhar_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="85dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toLeftOf="@id/zuhar_image"
+                        android:text="Zuhar Time"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+
+                    <TextView
+                        android:id="@+id/zuhar_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/zuhar_name"
+                        android:layout_marginRight="90dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toLeftOf="@id/zuhar_image"
+                        android:text="00:00:00"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/asarcard"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/zuharcard"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <RelativeLayout
+                    android:id="@+id/asar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/zuhar_layout"
+                    android:padding="10dp"
+                    android:visibility="visible">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/asar_image"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/asar"
+                        />
+
+                    <TextView
+                        android:id="@+id/asar_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="88dp"
+                        android:layout_toLeftOf="@id/asar_image"
+                        android:text="Asar Time"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+
+                    <TextView
+                        android:id="@+id/asar_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/asar_name"
+                        android:layout_marginRight="90dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toLeftOf="@id/asar_image"
+                        android:text="00:00:00"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/magrib_card"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/asarcard"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <RelativeLayout
+                    android:id="@+id/magrib_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/asar_layout"
+                    android:padding="10dp"
+                    android:visibility="visible">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/magrib_image"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/magrib"/>
+
+                    <TextView
+                        android:id="@+id/magrib_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="76dp"
+                        android:layout_toLeftOf="@id/magrib_image"
+                        android:text="Magrib Time"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+
+                    <TextView
+                        android:id="@+id/magrib_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/magrib_name"
+                        android:layout_marginRight="90dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toLeftOf="@id/magrib_image"
+                        android:text="00:00:00"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/magrib_card"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <RelativeLayout
+                    android:id="@+id/aisha_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/magrib_layout"
+                    android:padding="10dp"
+                    android:visibility="visible">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/aisha_image"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/isha"/>
+
+                    <TextView
+                        android:id="@+id/aisha_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="90dp"
+                        android:layout_toLeftOf="@id/aisha_image"
+                        android:text="Isha Time"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+
+                    <TextView
+                        android:id="@+id/aisha_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aisha_name"
+                        android:layout_marginRight="90dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toLeftOf="@id/aisha_image"
+                        android:text="00:00:00"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fajarcard"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="130dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+
+                <RelativeLayout
+                    android:id="@+id/fajr_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="visible">
+
+
+                    <TextView
+                        android:id="@+id/fajr_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="95dp"
+                        android:layout_toLeftOf="@id/fajr_image"
+                        android:text="Fajr Time"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+
+                    <TextView
+                        android:id="@+id/fajr_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fajr_name"
+                        android:layout_marginRight="90dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toLeftOf="@id/fajr_image"
+                        android:text="00:00:00"
+                        android:textColor="#000"
+                        android:textSize="19dp"
+                        android:fontFamily="@font/round_font"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/fajr_image"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/fajar"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/prayer_main_txt"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/counter_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_muslim"
+            android:elevation="50dp"
+            />
+
+        <ImageView
+            android:id="@+id/backbutton"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_left_arrow"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

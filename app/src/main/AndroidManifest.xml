@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.easyapplication">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EasyApplication">
+        <activity android:name=".Splash.OnBoarding"></activity>
+        <activity android:name=".Main.BudgetManager.DetailBudget.AddRavenueToBudget.AddRavenueActivity" />
+        <activity android:name=".Main.BudgetManager.DetailBudget.AddExpenseToBudget.AddExpenseActivity" />
+        <activity android:name=".Main.BudgetManager.AddBudget.AddBudgetActivity" />
+        <activity android:name=".Main.BudgetManager.DetailBudget.Launcher.DetailedBudgetActivity" />
+        <activity android:name=".Main.BudgetManager.Home.BudgetHomeActivity" />
+        <activity
+            android:name=".Main.PrayerReminder.Alarm.PrayerAlarmActivity"
+            android:showOnLockScreen="true"
+            android:turnScreenOn="true"
+            tools:targetApi="o_mr1" />
+        <activity android:name=".Main.PrayerReminder.Tasebee.TasbeeActivity" />
+        <activity android:name=".Main.PrayerReminder.Home.PrayerReminderActivity" />
+        <activity
+            android:name=".Main.MedicineReminder.Alarm.AlarmActivity"
+            android:showOnLockScreen="true"
+            android:turnScreenOn="true"
+            tools:targetApi="o_mr1" />
+        <activity android:name=".Main.MedicineReminder.History.MedicineHistory" />
+        <activity android:name=".Main.MedicineReminder.AddMedicine.AddMedicine" />
+        <activity
+            android:name=".Main.MedicineReminder.Home.MedicineHome"
+            android:theme="@style/Theme.EasyApplication" />
+        <activity android:name=".SignUp.UserSignUp" />
+        <activity android:name=".Main.Home.MainActivity" />
+        <activity android:name=".LogIn.UserLogin" />
+        <activity android:name=".Splash.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".Main.MedicineReminder.Alarm.AlarmReceiver" />
+        <receiver android:name=".Main.PrayerReminder.Alarm.PrayerAlarmReceiver" />
+    </application>
+
+</manifest>

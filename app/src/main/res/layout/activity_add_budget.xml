@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Main.BudgetManager.AddBudget.AddBudgetActivity">
+
+    <Button
+        android:id="@+id/add_budget_btn"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/add_budget_edit_txt"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/add_btn_bck"
+        android:text="ADD"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/add_budget_edit_txt"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/edit_txt_bck"
+        android:hint="Enter Amount"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textColorHint="#737373"
+        android:textSize="20dp" />
+
+    <ProgressBar
+        android:id="@+id/activity_add_budget_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/add_budget_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/add_budget_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:text="Add Budget"
+            android:textColor="#ffffff"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</RelativeLayout>

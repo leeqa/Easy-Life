@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Main.BudgetManager.DetailBudget.AddRavenueToBudget.AddRavenueActivity">
+
+
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/add_revenue_bck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:src="@drawable/arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Revenue"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="30dp">
+        <ProgressBar
+            android:id="@+id/add_revenue_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+        <Button
+            android:id="@+id/add_revenue_btn"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/add_revenue_edit_txt"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/add_btn_bck"
+            android:text="ADD"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/add_revenue_edit_txt"
+            android:layout_width="298dp"
+            android:layout_height="57dp"
+            android:layout_below="@id/amount"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_txt_bck"
+            android:hint="Enter Amount"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textColorHint="#737373"
+            android:textSize="25dp" />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/add_revenue_current_date_txt"
+            android:layout_marginTop="25dp"
+            android:text="Amount:"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/add_revenue_current_date_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp"
+            android:text="25 April, 2021"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+    </RelativeLayout>
+</RelativeLayout>
