@@ -111,7 +111,7 @@ public class ExpenseRowAdapter extends BaseAdapter {
                 category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_general));
             }
 
-            expense_amount.setText(amounts.get(i));
+            expense_amount.setText("Rs"+amounts.get(i));
             expense_delete = view.findViewById(R.id.expense_delete);
             String amount = amounts.get(i);
             expense_delete.setOnClickListener(new View.OnClickListener() {

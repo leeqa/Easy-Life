@@ -69,7 +69,7 @@ public class RavenueRowAdapter extends BaseAdapter {
             ravenue_amount = view.findViewById(R.id.ravenue_amount);
             progressBar=view.findViewById(R.id.ravenue_progressbar);
             ravenue_date.setText(dates.get(i));
-            ravenue_amount.setText(amounts.get(i));
+            ravenue_amount.setText("Rs"+amounts.get(i));
             String amount = amounts.get(i);
             ravenue_delete = view.findViewById(R.id.ravenue_delete);
             ravenue_delete.setOnClickListener(new View.OnClickListener() {

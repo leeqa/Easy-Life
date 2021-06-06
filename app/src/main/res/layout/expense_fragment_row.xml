@@ -75,7 +75,7 @@ android:background="#fff">
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/ravenue_delete"
-            android:fontFamily="@font/oxygen"
+            android:fontFamily="@font/oxygen_bold"
             android:text="AMOUNT"
             android:textColor="#000" />
     </LinearLayout>
