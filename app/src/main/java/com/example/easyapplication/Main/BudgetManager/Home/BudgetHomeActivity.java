@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +29,7 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
 public class BudgetHomeActivity extends AppCompatActivity {
+    public static String BUDGETNAME = "Month";
     ProgressBar budgetProgressbar;
     TextView budgetText, budget_current_month, budget_total_amount_pkr, budget_total_amount;
     //    String budget;
@@ -33,10 +38,14 @@ public class BudgetHomeActivity extends AppCompatActivity {
     SharedPreferencesGetSet sharedPreferencesGetSet;
     ProgressBar activity_budget_home_progressbar;
 
+    public static String BUDGETONLINE = "Rs5,450";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_home);
+
         sharedPreferencesGetSet = new SharedPreferencesGetSet();
         budget_total_amount_pkr = findViewById(R.id.budget_total_amount_pkr);
         budget_total_amount = findViewById(R.id.budget_total_amount);
@@ -46,13 +55,14 @@ public class BudgetHomeActivity extends AppCompatActivity {
         activity_budget_home_progressbar.setVisibility(View.VISIBLE);
         Calendar calendar = Calendar.getInstance();
         String month = getMonthForInt(calendar.get(Calendar.MONTH));
-        String budgetName = month + "," + calendar.get(Calendar.YEAR);
+        String budgetName = month + ", " + calendar.get(Calendar.YEAR);
         getRemainingBudget();
 //        budget = sharedPreferencesGetSet.getCurrentBudget(getApplicationContext());
 //        remainingBudget=sharedPreferencesGetSet.getCurrentTotalBudget(getApplicationContext());
         budgetText = findViewById(R.id.budget_txt);
         budget_current_month = findViewById(R.id.budget_current_month);
         budget_current_month.setText(budgetName);
+        BUDGETNAME = budgetName;
         budgetProgressbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +100,7 @@ public class BudgetHomeActivity extends AppCompatActivity {
 //            budgetText.setText(budget);
                     budgetText.setText(budgetOnline);
                     budgetProgressbar.setEnabled(true);
+                    BUDGETONLINE = budgetOnline;
                 }
                 if (totalBudgetOnline == null) {
                     budget_total_amount_pkr.setVisibility(View.GONE);
@@ -98,6 +109,8 @@ public class BudgetHomeActivity extends AppCompatActivity {
                     budget_total_amount_pkr.setVisibility(View.VISIBLE);
                     budget_total_amount.setVisibility(View.VISIBLE);
                     budget_total_amount_pkr.setText(totalBudgetOnline);
+
+
 
                 }
             }

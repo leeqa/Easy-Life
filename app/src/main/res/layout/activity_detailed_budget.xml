@@ -1,59 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Main.BudgetManager.DetailBudget.Launcher.DetailedBudgetActivity">
 
-    <RelativeLayout
-        android:id="@+id/add_budget_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@color/colorPrimaryDark">
+        android:layout_height="230dp"
+        android:background="@drawable/gradient"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/detail_budget_bck"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="26sp"
-            android:src="@drawable/arrow_back" />
-
-        <ImageView
-            android:id="@+id/detail_budget_add"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/add_budget_toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="26sp"
-            android:layout_marginRight="25dp"
-            android:src="@drawable/ic_add"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20sp"
-            android:text="Budget Details"
-            android:textColor="#ffffff"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/detail_budget_bck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="26sp"
+                android:src="@drawable/arrow_back"
+                app:srcCompat="@drawable/ic_arrow_back" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/oxygen"
+                android:paddingLeft="20dp"
+                android:text="Budget Details"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/detail_budget_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="false"
+                android:layout_marginTop="26sp"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/ic_add"
+                app:srcCompat="@drawable/ic_round_add" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_round_arrow_left" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/budget_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/oxygen"
+                        android:gravity="center_horizontal"
+                        android:text="October"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/ravenue_current_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/oxygen_bold"
+                        android:text="$5,650"
+                        android:textColor="@color/white"
+                        android:textSize="50sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_round_arrow_right" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tabLayout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        app:tabIndicatorFullWidth="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/top_corner_round_back"
+            android:orientation="vertical">
 
-    </com.google.android.material.tabs.TabLayout>
-</RelativeLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:tabIndicatorFullWidth="false">
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tabLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

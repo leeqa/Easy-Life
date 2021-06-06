@@ -16,7 +16,8 @@
         android:text="Current:-"
         android:textColor="#000"
         android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/expense_current_amount"
@@ -29,7 +30,8 @@
         android:text="amount"
         android:textColor="#000"
         android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/expense_fragment_listView"
@@ -51,7 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="NOTHING TO SHOW"
-        android:textSize="30dp"
+        android:fontFamily="@font/oxygen"
+        android:text="Nothing to show"
+        android:textSize="18sp"
         android:visibility="gone" />
 </RelativeLayout>
