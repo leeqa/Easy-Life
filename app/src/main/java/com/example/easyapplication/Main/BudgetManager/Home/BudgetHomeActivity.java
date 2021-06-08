@@ -3,10 +3,13 @@ package com.example.easyapplication.Main.BudgetManager.Home;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -37,7 +40,7 @@ public class BudgetHomeActivity extends AppCompatActivity {
     //    String remainingBudget;
     SharedPreferencesGetSet sharedPreferencesGetSet;
     ProgressBar activity_budget_home_progressbar;
-
+    int redAmount, redBudgetOnline;
     public static String BUDGETONLINE = "Rs5,450";
 
 
@@ -86,6 +89,7 @@ public class BudgetHomeActivity extends AppCompatActivity {
         DatabaseReference easyApp = FirebaseDatabase.getInstance().getReference("App Members")
                 .child(auth.getCurrentUser().getUid()).child("Budget Reminder").child(budgetName);
         easyApp.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
                 budgetOnline = (String) snapshot.child("Remaining Amount").getValue();
@@ -110,8 +114,13 @@ public class BudgetHomeActivity extends AppCompatActivity {
                     budget_total_amount.setVisibility(View.VISIBLE);
                     budget_total_amount_pkr.setText(totalBudgetOnline);
 
+                }
 
-
+                redAmount = Integer.parseInt(totalBudgetOnline)/2;
+                redBudgetOnline = Integer.parseInt(budgetOnline);
+                if (redBudgetOnline<redAmount)
+                {
+                    budgetProgressbar.setProgressDrawable(getResources().getDrawable(R.drawable.circle_shape_red));
                 }
             }
 
