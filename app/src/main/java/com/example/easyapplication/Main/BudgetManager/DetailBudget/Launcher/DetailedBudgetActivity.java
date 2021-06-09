@@ -29,14 +29,19 @@ import com.example.easyapplication.R;
 import com.example.easyapplication.Utilities.SharedPreferencesGetSet;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class DetailedBudgetActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
-    ImageView detail_budget_bck, detail_budget_add;
+    ImageView detail_budget_bck, detail_budget_add, iv_left_arrow, iv_right_arrow;
     TextView ravenue_current_amount, budget_month;
     Context context;
+
+    int index=5;
+    ArrayList<String> months = new ArrayList<>();
+    ArrayList<String> monthlyAmount = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,6 @@ public class DetailedBudgetActivity extends AppCompatActivity {
         }
 
 
-
         detail_budget_bck = findViewById(R.id.detail_budget_bck);
         detail_budget_bck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,10 +66,12 @@ public class DetailedBudgetActivity extends AppCompatActivity {
         });
         detail_budget_add = findViewById(R.id.detail_budget_add);
         ravenue_current_amount = findViewById(R.id.ravenue_current_amount);
-        ravenue_current_amount.setText("Rs"+BudgetHomeActivity.BUDGETONLINE);
+        ravenue_current_amount.setText("Rs" + BudgetHomeActivity.BUDGETONLINE);
         budget_month = findViewById(R.id.budget_month);
         budget_month.setText(BudgetHomeActivity.BUDGETNAME);
 
+        iv_left_arrow = findViewById(R.id.iv_left_arrow);
+        iv_right_arrow = findViewById(R.id.iv_right_arrow);
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
@@ -93,7 +99,7 @@ public class DetailedBudgetActivity extends AppCompatActivity {
                 }
             }
         });
-
+        AddList();
     }
 
     @Override
@@ -101,6 +107,76 @@ public class DetailedBudgetActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(DetailedBudgetActivity.this, BudgetHomeActivity.class));
         finish();
+    }
+
+    private void AddList() {
+
+        months.add("January");
+        months.add("February");
+        months.add("March");
+        months.add("April");
+        months.add("May");
+        months.add("June");
+        months.add("July");
+        months.add("August");
+        months.add("September");
+        months.add("October");
+        months.add("November");
+        months.add("December");
+        monthlyAmount.add("5263");
+        monthlyAmount.add("3534");
+        monthlyAmount.add("252");
+        monthlyAmount.add("24525");
+        monthlyAmount.add("2432");
+
+        monthlyAmount.add(BudgetHomeActivity.BUDGETONLINE);
+
+        monthlyAmount.add("2612");
+        monthlyAmount.add("7755");
+        monthlyAmount.add("1345");
+        monthlyAmount.add("33345");
+        monthlyAmount.add("6546");
+        monthlyAmount.add("357");
+
+
+
+        iv_right_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (index<5 && index>=0){
+
+                    index++;
+                    ravenue_current_amount.setText("Rs"+monthlyAmount.get(index));
+                    budget_month.setText(months.get(index)+", 2021");
+                    Log.e("onClick: ", "ravenue_current_amount: " + monthlyAmount.get(index));
+
+                }
+
+
+
+
+            }
+        });
+
+        iv_left_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index<=5 && index>=0){
+
+                    if (index>0){
+                        index--;
+                    }
+                    ravenue_current_amount.setText("Rs"+monthlyAmount.get(index));
+                    budget_month.setText(months.get(index)+", 2021");
+                    Log.e("onClick: ", "ravenue_current_amount: " + monthlyAmount.get(index));
+
+
+                }
+            }
+        });
+
+
     }
 
 
