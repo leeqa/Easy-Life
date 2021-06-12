@@ -113,13 +113,6 @@
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/add_revenue_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -130,14 +123,15 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:text="Note:"
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/edtNote"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/card_shape"
                 android:hint="Write a note here"
@@ -148,9 +142,16 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="#737373"
+                android:maxLines="3"
+                android:minLines="3"
                 android:textSize="16sp" />
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/add_revenue_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
     </LinearLayout>
 
     <Button

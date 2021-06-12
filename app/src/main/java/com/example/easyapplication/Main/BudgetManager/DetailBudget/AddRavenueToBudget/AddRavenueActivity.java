@@ -34,7 +34,7 @@ import java.util.Calendar;
 public class AddRavenueActivity extends AppCompatActivity {
     ImageView add_revenue_bck;
     TextView add_revenue_current_date_txt;
-    EditText add_revenue_edit_txt;
+    EditText add_revenue_edit_txt, edtNote;
     Button add_revenue_btn;
     ProgressBar progressBar;
 
@@ -59,6 +59,7 @@ public class AddRavenueActivity extends AppCompatActivity {
         add_revenue_current_date_txt = findViewById(R.id.add_revenue_current_date_txt);
         add_revenue_current_date_txt.setText(currentDate);
         add_revenue_edit_txt = findViewById(R.id.add_revenue_edit_txt);
+        edtNote = findViewById(R.id.edtNote);
         add_revenue_btn = findViewById(R.id.add_revenue_btn);
         progressBar = findViewById(R.id.add_revenue_progressbar);
         add_revenue_btn.setOnClickListener(new View.OnClickListener() {
@@ -68,12 +69,12 @@ public class AddRavenueActivity extends AppCompatActivity {
                 String date = add_revenue_current_date_txt.getText().toString();
                 String amount = add_revenue_edit_txt.getText().toString();
                 RevenueModel revenueModel = new RevenueModel(date, amount);
+                revenueModel.setNote(edtNote.getText().toString());
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 DatabaseReference easyApp = FirebaseDatabase.getInstance().getReference("App Members")
                         .child(auth.getCurrentUser().getUid());
-                //to create id random id
-                String id = easyApp.push().getKey();
-                easyApp.child("Budget Reminder").child(budgetName).child("Revenue").child(id).setValue(revenueModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                easyApp.child("Budget Reminder").child(budgetName).child("Revenue").push().setValue(revenueModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         setRemainingBudget(amount);

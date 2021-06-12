@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.easyapplication.Main.BudgetManager.DetailBudget.AddRavenueToBudget.RevenueModel;
+import com.example.easyapplication.Main.BudgetManager.DetailBudget.Launcher.DetailedBudgetActivity;
 import com.example.easyapplication.R;
 import com.example.easyapplication.Utilities.SharedPreferencesGetSet;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,31 +25,25 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RavenueRowAdapter extends BaseAdapter {
-    TextView ravenue_date, ravenue_name, ravenue_amount;
+    TextView ravenue_date, ravenue_name, ravenue_amount, txtDetail;
     ImageButton ravenue_delete;
     ProgressBar progressBar;
-    ArrayList<String> dates;
-    //    ArrayList<String> categories;
-    ArrayList<String> amounts;
     Context context;
-    ArrayList<String> idArray;
-    String budgetName;
+    List<RevenueModel> data;
     LayoutInflater layoutInflater;
 
-    public RavenueRowAdapter(String budgetName, Context context, ArrayList<String> idArray, ArrayList<String> dates, ArrayList<String> amounts) {
-        this.budgetName = budgetName;
+    public RavenueRowAdapter(Context context, List<RevenueModel> data) {
         this.context = context;
-        this.idArray = idArray;
-        this.dates = dates;
-        this.amounts = amounts;
+        this.data = data;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return dates.size();
+        return data.size();
     }
 
     @Override
@@ -67,17 +63,21 @@ public class RavenueRowAdapter extends BaseAdapter {
             ravenue_date = view.findViewById(R.id.ravenue_date);
             ravenue_name = view.findViewById(R.id.ravenue_name);
             ravenue_amount = view.findViewById(R.id.ravenue_amount);
+            txtDetail= view.findViewById(R.id.txtDetail);
             progressBar=view.findViewById(R.id.ravenue_progressbar);
-            ravenue_date.setText(dates.get(i));
-            ravenue_amount.setText("Rs"+amounts.get(i));
-            String amount = amounts.get(i);
+
+            RevenueModel model = data.get(i);
+            ravenue_date.setText(model.getDate());
+            ravenue_amount.setText("Rs"+model.getAmount());
+            txtDetail.setText(model.getNote());
+            String amount = model.getAmount();
             ravenue_delete = view.findViewById(R.id.ravenue_delete);
             ravenue_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ravenue_delete.setEnabled(false);
                     progressBar.setVisibility(View.VISIBLE);
-                    String id = idArray.get(i);
+                    String id = data.get(i).id;
                     deleteFromList( id, amount);
                 }
             });
@@ -88,7 +88,8 @@ public class RavenueRowAdapter extends BaseAdapter {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         DatabaseReference easyApp = FirebaseDatabase.getInstance().getReference("App Members")
                 .child(auth.getCurrentUser().getUid());
-        easyApp.child("Budget Reminder").child(budgetName).child("Revenue").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+        easyApp.child("Budget Reminder").child(DetailedBudgetActivity.selectedBudgetMonth)
+                .child("Revenue").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 setRemainingBudget(amount);

@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.easyapplication.Main.BudgetManager.DetailBudget.Launcher.DetailedBudgetActivity;
 import com.example.easyapplication.R;
 import com.example.easyapplication.Utilities.SharedPreferencesGetSet;
 import com.google.firebase.auth.FirebaseAuth;
@@ -92,10 +93,10 @@ public class ExpenseFragment extends Fragment {
 //        String currentDate = sharedPreferencesGetSet.getCurrentBudget(context);
         Calendar calendar = Calendar.getInstance();
         String month = getMonthForInt(calendar.get(Calendar.MONTH));
-        String budgetName = sharedPreferencesGetSet.getCurrentBudgetName(context);
+//        String budgetName = sharedPreferencesGetSet.getCurrentBudgetName(context);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         DatabaseReference easyApp = FirebaseDatabase.getInstance().getReference("App Members")
-                .child(auth.getCurrentUser().getUid()).child("Budget Reminder").child(budgetName);
+                .child(auth.getCurrentUser().getUid()).child("Budget Reminder").child(DetailedBudgetActivity.selectedBudgetMonth);
         easyApp.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -115,7 +116,7 @@ public class ExpenseFragment extends Fragment {
                                     categoriesArray.add(categories);
                                     amountsArray.add(amounts);
                                     if (datesArray != null && categoriesArray != null && amountsArray != null && idArray != null) {
-                                        ExpenseRowAdapter expenseRowAdapter = new ExpenseRowAdapter(budgetName, context, idArray, datesArray, categoriesArray, amountsArray);
+                                        ExpenseRowAdapter expenseRowAdapter = new ExpenseRowAdapter(context, idArray, datesArray, categoriesArray, amountsArray);
                                         expense_fragment_listView.setAdapter(expenseRowAdapter);
                                         expense_received_progressBar.setVisibility(View.GONE);
                                     } else {

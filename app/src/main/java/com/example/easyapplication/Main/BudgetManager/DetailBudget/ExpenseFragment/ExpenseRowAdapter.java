@@ -46,13 +46,12 @@ public class ExpenseRowAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
 
 
-    public ExpenseRowAdapter(String budgetName, Context context, ArrayList<String> idArray, ArrayList<String> dates, ArrayList<String> categories, ArrayList<String> amounts) {
+    public ExpenseRowAdapter(Context context, ArrayList<String> idArray, ArrayList<String> dates, ArrayList<String> categories, ArrayList<String> amounts) {
         this.context = context;
         this.idArray = idArray;
         this.dates = dates;
         this.categories = categories;
         this.amounts = amounts;
-        this.budgetName = budgetName;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

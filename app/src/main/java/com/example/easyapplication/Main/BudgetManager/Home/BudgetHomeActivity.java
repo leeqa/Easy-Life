@@ -32,7 +32,7 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
 public class BudgetHomeActivity extends AppCompatActivity {
-    public static String BUDGETNAME = "Month";
+//    public String BUDGETNAME = "Month";
     ProgressBar budgetProgressbar;
     TextView budgetText, budget_current_month, budget_total_amount_pkr, budget_total_amount;
     //    String budget;
@@ -65,7 +65,7 @@ public class BudgetHomeActivity extends AppCompatActivity {
         budgetText = findViewById(R.id.budget_txt);
         budget_current_month = findViewById(R.id.budget_current_month);
         budget_current_month.setText(budgetName);
-        BUDGETNAME = budgetName;
+//        BUDGETNAME = budgetName;
         budgetProgressbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,8 +92,18 @@ public class BudgetHomeActivity extends AppCompatActivity {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
-                budgetOnline = (String) snapshot.child("Remaining Amount").getValue();
-                totalBudgetOnline = (String)snapshot.child("Total").getValue();
+                if(snapshot.exists()){
+                    budgetOnline = (String) snapshot.child("Remaining Amount").getValue();
+                    totalBudgetOnline = (String)snapshot.child("Total").getValue();
+                    if(totalBudgetOnline != null && budgetOnline != null){
+                        redAmount = Integer.parseInt(totalBudgetOnline)/2;
+                        redBudgetOnline = Integer.parseInt(budgetOnline);
+                        if (redBudgetOnline<redAmount) {
+                            budgetProgressbar.setProgressDrawable(getResources().getDrawable(R.drawable.circle_shape_red));
+                        }
+                    }
+                }
+
                 //        if (budget.equals("")) {
                 if (budgetOnline == null) {
                     activity_budget_home_progressbar.setVisibility(View.GONE);
@@ -104,7 +114,7 @@ public class BudgetHomeActivity extends AppCompatActivity {
 //            budgetText.setText(budget);
                     budgetText.setText(budgetOnline);
                     budgetProgressbar.setEnabled(true);
-                    BUDGETONLINE = budgetOnline;
+//                    BUDGETONLINE = budgetOnline;
                 }
                 if (totalBudgetOnline == null) {
                     budget_total_amount_pkr.setVisibility(View.GONE);
@@ -114,13 +124,6 @@ public class BudgetHomeActivity extends AppCompatActivity {
                     budget_total_amount.setVisibility(View.VISIBLE);
                     budget_total_amount_pkr.setText(totalBudgetOnline);
 
-                }
-
-                redAmount = Integer.parseInt(totalBudgetOnline)/2;
-                redBudgetOnline = Integer.parseInt(budgetOnline);
-                if (redBudgetOnline<redAmount)
-                {
-                    budgetProgressbar.setProgressDrawable(getResources().getDrawable(R.drawable.circle_shape_red));
                 }
             }
 
