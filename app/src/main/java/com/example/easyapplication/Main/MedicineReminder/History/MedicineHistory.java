@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.easyapplication.Main.MedicineReminder.AddMedicine.MedicineModel;
 import com.example.easyapplication.Main.MedicineReminder.Home.MedicineHomeAdapter;
 import com.example.easyapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -37,12 +40,8 @@ public class MedicineHistory extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    ArrayList<String> medicineNames;
-    ArrayList<String> time;
-    ArrayList<String> quantity;
-    ArrayList<String> type;
-    ArrayList<String> days;
-    ArrayList<String> status;
+    List<MedicineModel> medicineModels = new ArrayList<>();
+
     @BindView(R.id.medicine_history_list_view)
     ListView medicine_history_list_view;
     @BindView(R.id.medicine_history_txt)
@@ -68,7 +67,7 @@ public class MedicineHistory extends AppCompatActivity {
     }
 
     private void checkAndShowData(String CURRENT_FILTERING_TYPE) {
-        medicine_history_list_view.setAdapter(null);
+//        medicine_history_list_view.setAdapter(null);
         progressBar.setVisibility(View.VISIBLE);
         DatabaseReference databaseReference;
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -92,89 +91,49 @@ public class MedicineHistory extends AppCompatActivity {
     }
 
     private void getAllDataFrmFBAndShow(String CURRENT_FILTERING_TYPE) {
-        medicine_history_list_view.setAdapter(null);
-        medicineNames = new ArrayList<>();
-        time = new ArrayList<>();
-        quantity = new ArrayList<>();
-        type = new ArrayList<>();
-        days = new ArrayList<>();
-        status=new ArrayList<>();
+//        medicine_history_list_view.setAdapter(null);
+        Log.e( "getAllDataFrm: ", CURRENT_FILTERING_TYPE);
         DatabaseReference easyApp;
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        easyApp = FirebaseDatabase.getInstance().getReference("App Members").child(auth.getCurrentUser().getUid()).child("Medicine Reminder");
-        easyApp.addValueEventListener(new ValueEventListener() {
+        easyApp = FirebaseDatabase.getInstance().getReference("App Members")
+                .child(auth.getCurrentUser().getUid())
+                .child("Medicine Reminder");
+        easyApp.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                medicineModels.clear();
+                Log.e("onDataChange: ",snapshot+"" );
+
                 if (CURRENT_FILTERING_TYPE.equals("All")) {
-                    for (DataSnapshot medicines : snapshot.getChildren()) {
-                        String days = String.valueOf(medicines.child("days").getValue());
-                        if (days.contains(currentDay.substring(0, 3))) {
-                            if (String.valueOf(medicines.child("status").getValue()).equals("Taken") ||
-                                    String.valueOf(medicines.child("status").getValue()).equals("Ignored")) {
-                                medicineNames.add(String.valueOf(medicines.child("medicineName").getValue()));
-                                time.add(String.valueOf(medicines.child("time").getValue()));
-                                quantity.add(String.valueOf(medicines.child("quantity").getValue()));
-                                type.add(String.valueOf(medicines.child("type").getValue()));
-                                status.add(String.valueOf(medicines.child("status").getValue()));
-                                MedicineHistoryAdapter medicineHistoryAdapter = new MedicineHistoryAdapter(getApplicationContext(), medicineNames, time, quantity, type, status);
-                                medicine_history_list_view.setAdapter(medicineHistoryAdapter);
-                                progressBar.setVisibility(View.GONE);
-                                textView.setVisibility(View.GONE);
-                            }
-                            else {
-                                if(medicineNames.size()<=0){
-                                    progressBar.setVisibility(View.GONE);
-                                    textView.setVisibility(View.VISIBLE);
-                                }
+                    for (DataSnapshot medicine : snapshot.getChildren()) {
+                        String days = String.valueOf(medicine.child("days").getValue());
+//                        if (days.contains(currentDay.substring(0, 3)))
+                        {
+                            MedicineModel model = medicine.getValue(MedicineModel.class);
+                            medicineModels.add(model);
+                        }
+                    }
+                } else{
+                    for (DataSnapshot medicine : snapshot.getChildren()) {
+                        String days = String.valueOf(medicine.child("days").getValue());
+//                        if (days.contains(currentDay.substring(0, 3)))
+                        {
+                            if (String.valueOf(medicine.child("status").getValue()).equals(CURRENT_FILTERING_TYPE)) {
+                                MedicineModel model = medicine.getValue(MedicineModel.class);
+                                medicineModels.add(model);
                             }
                         }
                     }
-                } else if (CURRENT_FILTERING_TYPE.equals("Taken")) {
-                    for (DataSnapshot medicines : snapshot.getChildren()) {
-                        String days = String.valueOf(medicines.child("days").getValue());
-                        if (days.contains(currentDay.substring(0, 3))) {
-                            if (String.valueOf(medicines.child("status").getValue()).equals("Taken")) {
-                                medicineNames.add(String.valueOf(medicines.child("medicineName").getValue()));
-                                time.add(String.valueOf(medicines.child("time").getValue()));
-                                quantity.add(String.valueOf(medicines.child("quantity").getValue()));
-                                type.add(String.valueOf(medicines.child("type").getValue()));
-                                status.add(String.valueOf(medicines.child("status").getValue()));
-                                MedicineHistoryAdapter medicineHistoryAdapter = new MedicineHistoryAdapter(getApplicationContext(), medicineNames, time, quantity, type, status);
-                                medicine_history_list_view.setAdapter(medicineHistoryAdapter);
-                                progressBar.setVisibility(View.GONE);
-                                textView.setVisibility(View.GONE);
-                            }
-                            else {
-                                if(medicineNames.size()<=0){
-                                    progressBar.setVisibility(View.GONE);
-                                    textView.setVisibility(View.VISIBLE);
-                                }
-                            }
-                        }
-                    }
-                } else if (CURRENT_FILTERING_TYPE.equals("Ignored")) {
-                    for (DataSnapshot medicines : snapshot.getChildren()) {
-                        String days = String.valueOf(medicines.child("days").getValue());
-                        if (days.contains(currentDay.substring(0, 3))) {
-                            if (String.valueOf(medicines.child("status").getValue()).equals("Ignored")) {
-                                medicineNames.add(String.valueOf(medicines.child("medicineName").getValue()));
-                                time.add(String.valueOf(medicines.child("time").getValue()));
-                                quantity.add(String.valueOf(medicines.child("quantity").getValue()));
-                                type.add(String.valueOf(medicines.child("type").getValue()));
-                                status.add(String.valueOf(medicines.child("status").getValue()));
-                                MedicineHistoryAdapter medicineHistoryAdapter = new MedicineHistoryAdapter(getApplicationContext(), medicineNames, time, quantity, type, status);
-                                medicine_history_list_view.setAdapter(medicineHistoryAdapter);
-                                progressBar.setVisibility(View.GONE);
-                                textView.setVisibility(View.GONE);
-                            }
-                            else {
-                                if(medicineNames.size()<=0){
-                                    progressBar.setVisibility(View.GONE);
-                                    textView.setVisibility(View.VISIBLE);
-                                }
-                            }
-                        }
-                    }
+                }
+
+                MedicineHistoryAdapter medicineHistoryAdapter = new MedicineHistoryAdapter(MedicineHistory.this, medicineModels);
+                medicine_history_list_view.setAdapter(medicineHistoryAdapter);
+                progressBar.setVisibility(View.GONE);
+                if(medicineModels.isEmpty()){
+                    textView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    textView.setVisibility(View.GONE);
                 }
             }
 

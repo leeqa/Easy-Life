@@ -60,28 +60,28 @@ public class RavenueRowAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.ravenue_fragment_row, null);
-            ravenue_date = view.findViewById(R.id.ravenue_date);
-            ravenue_name = view.findViewById(R.id.ravenue_name);
-            ravenue_amount = view.findViewById(R.id.ravenue_amount);
-            txtDetail= view.findViewById(R.id.txtDetail);
-            progressBar=view.findViewById(R.id.ravenue_progressbar);
-
-            RevenueModel model = data.get(i);
-            ravenue_date.setText(model.getDate());
-            ravenue_amount.setText("Rs"+model.getAmount());
-            txtDetail.setText(model.getNote());
-            String amount = model.getAmount();
-            ravenue_delete = view.findViewById(R.id.ravenue_delete);
-            ravenue_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ravenue_delete.setEnabled(false);
-                    progressBar.setVisibility(View.VISIBLE);
-                    String id = data.get(i).id;
-                    deleteFromList( id, amount);
-                }
-            });
         }
+        ravenue_date = view.findViewById(R.id.ravenue_date);
+        ravenue_name = view.findViewById(R.id.ravenue_name);
+        ravenue_amount = view.findViewById(R.id.ravenue_amount);
+        txtDetail= view.findViewById(R.id.txtDetail);
+        progressBar=view.findViewById(R.id.ravenue_progressbar);
+
+        RevenueModel model = data.get(i);
+        ravenue_date.setText(model.getDate());
+        ravenue_amount.setText("Rs"+model.getAmount());
+        txtDetail.setText(model.getNote());
+        String amount = model.getAmount();
+        ravenue_delete = view.findViewById(R.id.ravenue_delete);
+        ravenue_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ravenue_delete.setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
+                String id = data.get(i).id;
+                deleteFromList( id, amount);
+            }
+        });
         return view;
     }
     private void deleteFromList(String id,String amount){

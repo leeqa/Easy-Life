@@ -378,18 +378,20 @@ public class AddMedicine extends AppCompatActivity implements View.OnClickListen
         // Set this to whatever you were planning to do at the given time
         Intent intent = new Intent(AddMedicine.this, AlarmReceiver.class);
         intent.putExtra("id", medicineID);
-        Calendar cal_now = Calendar.getInstance();
-        long alarmTimeAtUTC = calendar.getTimeInMillis() - cal_now.getTimeInMillis();
-        int seconds = (int) (alarmTimeAtUTC / 1000);
-        Calendar calendar1 = Calendar.getInstance();
-        calendar1.add(Calendar.SECOND, seconds);
+//        Calendar cal_now = Calendar.getInstance();
+//        long alarmTimeAtUTC = calendar.getTimeInMillis() - cal_now.getTimeInMillis();
+//        int seconds = (int) (alarmTimeAtUTC / 1000);
+//        Calendar calendar1 = Calendar.getInstance();
+//        calendar1.add(Calendar.SECOND, seconds);
 //        for (int i = 1; i <= dayOfWeek; i++) {
         Log.e("alarammmm",""+ medicineID);
         intent.setAction(medicineID);
             PendingIntent yourIntent = PendingIntent.getBroadcast(
                     this, dayOfWeek, intent, 0);
+        Log.e( "setAlarm: ",calendar+"" );
+        Log.e( "setAlarm: ",calendar.getTimeInMillis()+"" );
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, yourIntent);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), yourIntent);
 //        }
     }
 }
