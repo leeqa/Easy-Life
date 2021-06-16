@@ -75,55 +75,55 @@ public class ExpenseRowAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.expense_fragment_row, null);
-            progressBar = view.findViewById(R.id.expense_progressbar);
-            expense_date = view.findViewById(R.id.expense_date);
-            expense_name = view.findViewById(R.id.expense_name);
-            expense_amount = view.findViewById(R.id.expense_amount);
-            category_icon = view.findViewById(R.id.category_icon);
-            expense_date.setText(dates.get(i));
+        }
+        progressBar = view.findViewById(R.id.expense_progressbar);
+        expense_date = view.findViewById(R.id.expense_date);
+        expense_name = view.findViewById(R.id.expense_name);
+        expense_amount = view.findViewById(R.id.expense_amount);
+        category_icon = view.findViewById(R.id.category_icon);
+        expense_date.setText(dates.get(i));
 
-            expense_name.setText(categories.get(i));
+        expense_name.setText(categories.get(i));
 
-            if (categories.get(i).equals("General")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_general));
-            } else if (categories.get(i).equals("Clothes")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_clothes));
-            } else if (categories.get(i).equals("Entertainment")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_entertainment));
-            } else if (categories.get(i).equals("Food")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_food));
-            } else if (categories.get(i).equals("Health")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_health));
-            } else if (categories.get(i).equals("Household")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_household));
-            } else if (categories.get(i).equals("Hygiene")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_hygiene));
-            } else if (categories.get(i).equals("Pets")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_pets));
-            } else if (categories.get(i).equals("Presents")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_presents));
-            } else if (categories.get(i).equals("Sports")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_sports));
-            } else if (categories.get(i).equals("Transportation")) {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_transport));
-            } else {
-                category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_general));
+        if (categories.get(i).equals("General")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_general));
+        } else if (categories.get(i).equals("Clothes")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_clothes));
+        } else if (categories.get(i).equals("Entertainment")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_entertainment));
+        } else if (categories.get(i).equals("Food")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_food));
+        } else if (categories.get(i).equals("Health")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_health));
+        } else if (categories.get(i).equals("Household")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_household));
+        } else if (categories.get(i).equals("Hygiene")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_hygiene));
+        } else if (categories.get(i).equals("Pets")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_pets));
+        } else if (categories.get(i).equals("Presents")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_presents));
+        } else if (categories.get(i).equals("Sports")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_sports));
+        } else if (categories.get(i).equals("Transportation")) {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_transport));
+        } else {
+            category_icon.setImageDrawable(view.getResources().getDrawable(R.drawable.ic_general));
+        }
+
+        expense_amount.setText("Rs"+amounts.get(i));
+        expense_delete = view.findViewById(R.id.expense_delete);
+        String amount = amounts.get(i);
+        expense_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expense_delete.setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
+                String id = idArray.get(i);
+                deleteFromList(id, amount);
             }
 
-            expense_amount.setText("Rs"+amounts.get(i));
-            expense_delete = view.findViewById(R.id.expense_delete);
-            String amount = amounts.get(i);
-            expense_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    expense_delete.setEnabled(false);
-                    progressBar.setVisibility(View.VISIBLE);
-                    String id = idArray.get(i);
-                    deleteFromList(id, amount);
-                }
-
-            });
-        }
+        });
         return view;
     }
 

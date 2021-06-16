@@ -61,21 +61,21 @@ public class MedicineHomeAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.medicine_row, null);
-            RobotoBoldTextView tv_med_time = view.findViewById(R.id.tv_med_time);
-            RobotoBoldTextView tv_medicine_name = view.findViewById(R.id.tv_medicine_name);
-            RobotoLightTextView tv_dose_details = view.findViewById(R.id.tv_dose_details);
-            ImageView iv_alarm_delete = view.findViewById(R.id.iv_alarm_delete);
-            tv_med_time.setText(time.get(i));
-            tv_medicine_name.setText(medicineNames.get(i));
-            tv_dose_details.setText(quantity.get(i) + " " + type.get(i));
-            iv_alarm_delete.setVisibility(View.VISIBLE);
-            iv_alarm_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    DeleteItemFromList(medicinesId.get(i));
-                }
-            });
         }
+        RobotoBoldTextView tv_med_time = view.findViewById(R.id.tv_med_time);
+        RobotoBoldTextView tv_medicine_name = view.findViewById(R.id.tv_medicine_name);
+        RobotoLightTextView tv_dose_details = view.findViewById(R.id.tv_dose_details);
+        ImageView iv_alarm_delete = view.findViewById(R.id.iv_alarm_delete);
+        tv_med_time.setText(time.get(i));
+        tv_medicine_name.setText(medicineNames.get(i));
+        tv_dose_details.setText(quantity.get(i) + " " + type.get(i));
+        iv_alarm_delete.setVisibility(View.VISIBLE);
+        iv_alarm_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DeleteItemFromList(medicinesId.get(i));
+            }
+        });
         return view;
     }
 

@@ -221,10 +221,6 @@ public class MedicineHome extends AppCompatActivity {
                             time.add(String.valueOf(medicines.child("time").getValue()));
                             quantity.add(String.valueOf(medicines.child("quantity").getValue()));
                             type.add(String.valueOf(medicines.child("type").getValue()));
-                            MedicineHomeAdapter medicineHomeAdapter = new MedicineHomeAdapter(getApplicationContext(), medicinesId, medicineNames, time, quantity, type);
-                            medicineHomeListView.setAdapter(medicineHomeAdapter);
-                            progressBar.setVisibility(View.GONE);
-                            textView.setVisibility(View.GONE);
                         }
 //                        else {
 //                            progressBar.setVisibility(View.GONE);
@@ -237,10 +233,16 @@ public class MedicineHome extends AppCompatActivity {
 //                    }
                 }
                 if (medicineNames.size() <= 0) {
-                    progressBar.setVisibility(View.GONE);
                     textView.setVisibility(View.VISIBLE);
                 }
+                else {
+                    MedicineHomeAdapter medicineHomeAdapter = new MedicineHomeAdapter(getApplicationContext(), medicinesId, medicineNames, time, quantity, type);
+                    medicineHomeListView.setAdapter(medicineHomeAdapter);
+                    textView.setVisibility(View.GONE);
+                }
+                progressBar.setVisibility(View.GONE);
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
